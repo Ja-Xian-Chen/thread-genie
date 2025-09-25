@@ -1,9 +1,7 @@
-from fastapi import FastAPI
-import requests
+from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
+import praw
+import openai
 
 app = FastAPI()
 
-
-@app.get("/")
-def read_root():
-    return {"Server Connected"}
