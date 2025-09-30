@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers import answer
 
 app = FastAPI(
     title ="QThreads",
@@ -16,6 +17,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(answer.router, prefix="/answers", tags=["answers"])
 
 if __name__ == "__main__":
     import uvicorn
