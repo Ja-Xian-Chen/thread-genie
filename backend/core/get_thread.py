@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 # Load env (works both with uv and plain python)
 load_dotenv()
 
-# Initialize PRAW once
+# Initialize praw once
 reddit = praw.Reddit(
     client_id=os.getenv("CLIENT_ID"),
     client_secret=os.getenv("CLIENT_SECRET"),
@@ -14,8 +14,9 @@ reddit = praw.Reddit(
 )
 
 
-async def generate_summary(question: str, subreddit: str) -> str:
-    """Fetch the top post + top comment from a subreddit and return a summary string."""
+async def get_thread(question: str, subreddit: str) -> str:
+    """Fetch the top post + top comment from a subreddit and return a thread string."""
+
     try:
         # Get top 1 post of the day
         submission = next(reddit.subreddit(
@@ -29,12 +30,12 @@ async def generate_summary(question: str, subreddit: str) -> str:
                 break
 
         return (
-            #f"Question: {question}\n\n"
-            f"Top post 24hrs in r/{subreddit}:\n"
-            f"- Title: {submission.title}\n"
+            # f"Question: {question}\n\n"
+            f"Subreddit: r/{subreddit}"
+            f" Title: {submission.title}"
             # f"- Score: {submission.score}\n"
             # f"- URL: {submission.url}\n\n"
-            f"Top comment:\n{top_comment or 'No comments found'}"
+            f" Top comment: {top_comment or 'No comments found'}"
         )
     except Exception as e:
         return f"Error fetching data from r/{subreddit}: {e}"
