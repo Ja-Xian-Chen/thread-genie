@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import get_thread
-from core.get_thread import init_reddit, close_reddit
+from routers import get_reddit_thread
+from core.get_reddit_thread import init_reddit, close_reddit
+
 
 app = FastAPI(
     title="QThreads",
@@ -21,6 +22,7 @@ app.add_middleware(
 
 # startup / shutdown events
 
+
 @app.on_event("startup")
 async def startup_event():
     await init_reddit()
@@ -30,7 +32,8 @@ async def startup_event():
 async def shutdown_event():
     await close_reddit()
 
-app.include_router(get_thread.router, prefix="/answers", tags=["answers"])
+app.include_router(get_reddit_thread.router,
+                   prefix="/answers", tags=["answers"])
 
 if __name__ == "__main__":
     import uvicorn

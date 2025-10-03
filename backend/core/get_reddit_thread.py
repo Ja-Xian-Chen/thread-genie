@@ -7,6 +7,7 @@ load_dotenv()
 
 reddit = None  # will be initialized on startup
 
+
 async def init_reddit():
     global reddit
     reddit = asyncpraw.Reddit(
@@ -24,7 +25,7 @@ async def close_reddit():
         reddit = None
 
 
-async def get_thread(question: str, subreddit: str) -> str:
+async def get_reddit_thread(question: str, subreddit: str) -> str:
     try:
         subreddit_obj = await reddit.subreddit(subreddit)
 
@@ -48,9 +49,9 @@ async def get_thread(question: str, subreddit: str) -> str:
                 break
 
         return (
-            f"Subreddit: r/{subreddit}"
-            f"Title: {submission.title}"
-            f"Top comment: {top_comment or 'No comments found'}"
+            f"Subreddit: r/{subreddit} "
+            f"Title: {submission.title} "
+            f"Top comment: {top_comment or 'No comments found'} "
         )
 
     except Exception as e:
