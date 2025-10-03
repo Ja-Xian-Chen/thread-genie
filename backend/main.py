@@ -1,11 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import get_thread
-import praw
-from dotenv import load_dotenv
-import os
+from core.get_thread import init_reddit, close_reddit
 
-# Create the FastAPI application
 app = FastAPI(
     title="QThreads",
     description="An API to help get AI generated answers from online threads",
@@ -13,7 +10,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
-# Setup middleware for Cross-Origin Resource Sharing
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -22,14 +19,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# load environment variables from a .env file
-load_dotenv()
+# startup / shutdown events
 
+@app.on_event("startup")
+async def startup_event():
+    await init_reddit()
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    await close_reddit()
 
 app.include_router(get_thread.router, prefix="/answers", tags=["answers"])
 
-# uv run .\main.py
-# when installing new packages use UV before the pip install
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
