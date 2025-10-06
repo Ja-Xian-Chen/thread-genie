@@ -22,7 +22,6 @@ app.add_middleware(
 
 # startup / shutdown events
 
-
 @app.on_event("startup")
 async def startup_event():
     await init_reddit()
@@ -33,7 +32,7 @@ async def shutdown_event():
     await close_reddit()
 
 app.include_router(get_reddit_thread.router,
-                   prefix="/answers", tags=["answers"])
+    prefix="/answers", tags=["answers"])
 
 if __name__ == "__main__":
     import uvicorn
