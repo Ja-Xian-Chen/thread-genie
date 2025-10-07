@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import get_reddit_thread
 from core.get_reddit_thread import init_reddit, close_reddit
 
-
 app = FastAPI(
     title="QThreads",
     description="An API to help get AI generated answers from online threads",

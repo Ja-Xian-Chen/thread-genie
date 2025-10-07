@@ -26,34 +26,19 @@ async def close_reddit():
 
 
 async def get_reddit_thread(question: str, subreddit: str) -> str:
+    """
+    Fetches relevant Reddit comments from the given subreddit for context.
+    """
+    global reddit
     try:
-        subreddit_obj = await reddit.subreddit(subreddit)
-
-        # Fetch top 1 post
-        submission = None
-        async for post in subreddit_obj.top(time_filter="day", limit=1):
-            submission = post
-            break
-
-        if not submission:
-            return f"No posts found in r/{subreddit}"
-
-        # Ensure comments are fetched asynchronously
-        await submission.load()
-        await submission.comments.replace_more(limit=0)
-
-        top_comment = None
-        for comment in submission.comments:
-            if hasattr(comment, "body") and not getattr(comment, "stickied", False):
-                top_comment = comment.body
-                break
-
-        return (
-            f"Subreddit: r/{subreddit} "
-            f"Title: {submission.title} "
-            f"Top comment: {top_comment or 'No comments found'} "
-        )
-
+        sub = await reddit.subreddit(subreddit)
+        results = []
+        async for submission in sub.search(question, limit=3):
+            results.append({
+                "title": submission.title,
+                "selftext": submission.selftext[:500],  # limit text length
+                "url": submission.url
+            })
+        return results
     except Exception as e:
-        # for debugging you might want to log stacktrace here
         return f"Error fetching data from r/{subreddit}: {e}"

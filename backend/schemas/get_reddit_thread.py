@@ -2,9 +2,9 @@ from pydantic import BaseModel
 
 
 class threadRequest(BaseModel):
-    question: str
+    input: str
     subreddit: str
 
 
 class threadResponse(BaseModel):
-    thread: str
+    response: str
