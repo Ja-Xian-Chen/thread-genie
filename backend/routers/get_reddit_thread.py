@@ -1,17 +1,18 @@
-from fastapi import APIRouter
-from schemas.get_reddit_thread import threadRequest, threadResponse
-from core.get_reddit_thread import get_reddit_thread
-from core.generator import generator
+from fastapi import APIRouter # APIrouter allows for endpoints to be groupand reused
+from schemas.get_reddit_thread import threadRequest, threadResponse # imports the models from schemas
+from core.get_reddit_thread import get_reddit_thread # importing a function from core that handles getting data from reddit
+from core.generator import generator # imports function from that generates response from AI
 
-router = APIRouter()
+router = APIRouter() # new router instance 
 
 
-@router.post("/", response_model=threadResponse)
+@router.post("/", response_model=threadResponse) # Defines a POST endpoint at "/answers"
 async def get_reddit_thread_response(payload: threadRequest):
-    # Step 1: get Reddit data
+    # get Reddit  by calling reddit function
     reddit_data = await get_reddit_thread(payload.input, payload.subreddit)
 
-    # Step 2: generate AI response using Reddit context
+    # generate AI response using Reddit context by calling gnerator function
     ai_response = await generator(payload.input, payload.subreddit, reddit_data)
 
+    # returns the AI response
     return {"response": ai_response}
