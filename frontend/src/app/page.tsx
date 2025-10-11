@@ -1,6 +1,6 @@
 
 export default function Home() {
   return (
-    <div>Thread Genie</div>
+    <div>Thread</div>
   );
 }
