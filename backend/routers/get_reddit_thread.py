@@ -6,7 +6,7 @@ from core.generator import generator # imports function from that generates resp
 router = APIRouter() # new router instance 
 
 
-@router.post("/", response_model=threadResponse) # Defines a POST endpoint at "/answers"
+@router.post("/", response_model=threadResponse) # Defines a POST endpoint at "/input"
 async def get_reddit_thread_response(payload: threadRequest):
     # get Reddit  by calling reddit function
     reddit_data = await get_reddit_thread(payload.input, payload.subreddit)

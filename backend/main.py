@@ -33,7 +33,7 @@ async def shutdown_event():
 
 # registers router for get_reddit_thread
 app.include_router(get_reddit_thread.router,
-    prefix="/answers", tags=["answers"]) # routes will appear in /answers in the FastAPI doc
+    prefix="/input", tags=["input"]) # routes will appear in /input in the FastAPI doc
 
 # Runs app with Uvicorn and restarts server on code changes
 if __name__ == "__main__":

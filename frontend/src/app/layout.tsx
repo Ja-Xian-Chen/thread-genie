@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "QThread",
+  title: "Thread Genie",
   description: "An API to help get AI generated answers from online threads",
 };
 
