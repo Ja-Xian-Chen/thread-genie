@@ -1,2 +1,2 @@
 # AI-librarian
-Personal AI that helps you with research and learning
+Personal AI assistant that responds based on Reddit opinions and nothing else
