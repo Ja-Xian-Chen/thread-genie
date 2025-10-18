@@ -1,0 +1,18 @@
+# Core web framework
+fastapi==0.115.2
+uvicorn==0.32.0
+
+# Reddit API client
+asyncpraw==7.8.1
+
+# OpenAI SDK (async client)
+openai==1.51.2
+
+# Environment variable loader
+python-dotenv==1.0.1
+
+# Data validation
+pydantic==2.9.2
+
+# Optional: for database or other future features
+SQLAlchemy==2.0.35

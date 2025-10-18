@@ -54,8 +54,10 @@ export default function InputBar() {
         placeholder="Ask a question..."
         className="border p-2 rounded w-full"
       />
+      <label >Subreddit</label>
       <input // subreddit bar
         type="text"
+        id="large-input"
         value={subreddit}
         onChange={(e) => setSubreddit(e.target.value)}
         placeholder="Enter a subreddit (e.g. AskReddit)"
@@ -71,7 +73,7 @@ export default function InputBar() {
       {error && <p className="text-red-500">{error}</p>}
       {response && (
         <div className="mt-4 p-3 border rounded bg-gray-50">
-          <h3 className="font-bold mb-2">AI Reddit-style Answer:</h3> 
+          <h3 className="font-bold mb-3">AI Reddit-style Answer:</h3> 
           <p>{response}</p> 
         </div>
       )}

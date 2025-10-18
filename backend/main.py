@@ -5,7 +5,7 @@ from core.get_reddit_thread import init_reddit, close_reddit # imports Reddit st
 
 # creates the FastAPI application
 app = FastAPI(
-    title="QThreads",
+    title="Thread Genie",
     description="An API to help get AI generated answers from online threads",
     version="0.1.0",
     docs_url="/docs",
