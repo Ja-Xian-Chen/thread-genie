@@ -1,2 +1,1 @@
-/* globals.css */
-@tailwind utilities;
+@import "tailwindcss";

@@ -46,7 +46,7 @@ export default function InputBar() {
   };
 
   return (
-    <div className="p-4 space-y-3">
+    <div className="p-4 space-y-3 w-1/4 mx-auto text-white">
       <input // input bar
         type="text"
         value={inputTerm}
@@ -54,7 +54,7 @@ export default function InputBar() {
         placeholder="Ask a question..."
         className="border p-2 rounded w-full"
       />
-      <label >Subreddit</label>
+      <label>Subreddit</label>
       <input // subreddit bar
         type="text"
         id="large-input"
@@ -66,15 +66,15 @@ export default function InputBar() {
       <button // submit bar if loading: True show that its loading
         onClick={handleSubmit}
         disabled={loading}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-white text-black px-4 py-2 rounded"
       >
-        {loading ? "Loading..." : "Submit"} 
+        {loading ? "Loading..." : "Submit"}
       </button>
       {error && <p className="text-red-500">{error}</p>}
       {response && (
-        <div className="mt-4 p-3 border rounded bg-gray-50">
-          <h3 className="font-bold mb-3">AI Reddit-style Answer:</h3> 
-          <p>{response}</p> 
+        <div className="relative left-1/2 -translate-x-1/2 mt-4 mb-4 p-3 border rounded bg-gray-50 w-[250%] mx-auto">
+          <h3 className="font-bold mb-3 text-black">AI Reddit-style Answer:</h3>
+          <p className="text-black">{response}</p>
         </div>
       )}
     </div> // if there is an error display it, display the response

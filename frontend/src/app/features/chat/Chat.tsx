@@ -7,5 +7,5 @@ export default function Chat() {
   // const [loading, setLoading] = useState(false); // display progress of current task/post
   // const [error, setError] = useState<string | null>(null); // gets error if it occurs
 
-  return <div className="text-3xl font-bold underline">Chat</div>;
+  return <div className="text-4xl font-bold text-center text-white">Chat</div>;
 }
