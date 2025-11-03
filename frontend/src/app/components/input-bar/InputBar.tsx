@@ -66,15 +66,17 @@ export default function InputBar() {
       <button // submit bar if loading: True show that its loading
         onClick={handleSubmit}
         disabled={loading}
-        className="bg-white text-black px-4 py-2 rounded"
+        className="bg-white text-gray-700 px-4 py-2 rounded"
       >
         {loading ? "Loading..." : "Submit"}
       </button>
       {error && <p className="text-red-500">{error}</p>}
       {response && (
         <div className="relative left-1/2 -translate-x-1/2 mt-4 mb-4 p-3 border rounded bg-gray-50 w-[250%] mx-auto">
-          <h3 className="font-bold mb-3 text-black">AI Reddit-style Answer:</h3>
-          <p className="text-black">{response}</p>
+          <h3 className="font-bold mb-3 text-gray-700">
+            AI Reddit-style Answer:
+          </h3>
+          <p className="text-gray-500">{response}</p>
         </div>
       )}
     </div> // if there is an error display it, display the response
